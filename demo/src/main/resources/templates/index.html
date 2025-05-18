@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주문 결제 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>
+</head>
+<body>
+
+<h2>메뉴 선택 및 결제</h2>
+
+<label for="menu">메뉴 선택:</label>
+<select id="menu">
+    <option value="1">아메리카노 - 3000원</option>
+    <option value="2">카푸치노 - 3500원</option>
+    <option value="3">카페라떼 - 4000원</option>
+</select>
+<br><br>
+
+<label for="quantity">수량:</label>
+<input type="number" id="quantity" value="1">
+<br><br>
+
+<button onclick="requestPay()">결제하기</button>
+
+<script>
+    // ✅ 아임포트 가맹점 식별코드
+    const IMP = window.IMP;
+    IMP.init('imp38112401'); // 가맹점 식별코드
+
+    // ✅ 결제 요청
+    function requestPay() {
+        const menuId = document.getElementById('menu').value;
+        const quantity = document.getElementById('quantity').value;
+        const amount = parseInt(quantity) * (menuId === "1" ? 3000 : menuId === "2" ? 3500 : 4000);
+
+        IMP.request_pay({
+            pg: 'kakaopay',
+            pay_method: 'card',
+            merchant_uid: 'order_no_' + new Date().getTime(),
+            name: '주문명:결제테스트',
+            amount: amount,
+            buyer_email: 'example@example.com',
+            buyer_name: '홍길동',
+            buyer_tel: '010-1234-5678',
+            buyer_addr: '서울특별시 강남구',
+            buyer_postcode: '123-456'
+        }, function (rsp) {
+            if (rsp.success) {
+                // ✅ 결제 성공 시 백엔드로 요청
+                alert("결제가 완료되었습니다.");
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/api/order",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        impUid: rsp.imp_uid,
+                        merchantUid: rsp.merchant_uid,
+                        amount: rsp.paid_amount,
+                        menuId: menuId,
+                        quantity: quantity
+                    }),
+                    success: function (response) {
+                        alert("주문이 정상적으로 저장되었습니다.");
+                    },
+                    error: function (error) {
+                        alert("주문 저장 중 오류가 발생했습니다.");
+                    }
+                });
+
+            } else {
+                alert("결제가 실패하였습니다. " + rsp.error_msg);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
