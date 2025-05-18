@@ -24,6 +24,21 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Transactional
+    public Order createOrderFromPayment(Long orderId, int amount) {
+        Map<Long, Integer> quantityMap = new HashMap<>();
+
+        int totalPrice = amount;
+
+        List<Menu> menuItems = menuRepository.findAllById(List.of(orderId));
+
+        menuItems.forEach(menu -> quantityMap.put(menu.getId(), 1));
+
+        Order order = new Order(menuItems, totalPrice, quantityMap);
+
+        return orderRepository.save(order);
+    }
+
+    @Transactional
     public ResponseEntity<Order> createOrder(OrderRequestDTO dto) {
         Map<Long, Integer> quantityMap = new HashMap<>();
         AtomicInteger totalPrice = new AtomicInteger(0);

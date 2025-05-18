@@ -21,11 +21,13 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {url 'https://jitpack.io'}			// iamport 라이브러리 추가하기 위한 jitpack.io 추가
 }
 
 dependencies {
 	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
 	implementation 'com.h2database:h2' // H2 데이터베이스 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // JPA 사용을 위한 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-web'      // 웹 애플리케이션 개발을 위한 의존성 (REST API 등)
 	runtimeOnly 'com.mysql:mysql-connector-j'                              // MySQL 연결을 위한 JDBC 드라이버 의존성 (실행 시점에만 필요)
