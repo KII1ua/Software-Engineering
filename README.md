@@ -151,3 +151,55 @@
 
 - 초기에 메뉴 데이터들을 DB에 넣어주기 위한 클래스로 spring boot를 실행할때 유효성검사를 체크한 후 데이터가 없을경우 넣어준다.
 
+<br><br>
+
+# HOW TO USE🚀
+
+1. git pull을 먼저 받는다.
+
+![Image](https://github.com/user-attachments/assets/507c9a06-3809-4bff-b011-25a9f4b94a04)
+
+<br>
+
+2. 따로 빈 디렉토리에 origin을 추가하여 pull을 받는다.
+
+![Image](https://github.com/user-attachments/assets/5ed2f30e-a7cc-49e9-ab4e-083ded5181f6)
+
+<br>
+
+```
+git init
+git remote add origin https://github.com/KII1ua/Software-Engineering.git
+git pull origin main
+```
+
+3. application.yml 수정
+
+![Image](https://github.com/user-attachments/assets/82865402-45c9-440a-9297-8c8b146146f5)
+
+<br>
+
+```
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kiosk
+    username: {로컬에 설치되어 있는 mysql username 입력}
+    password: {mysql username에 대응하는 password 입력}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+    #    database-platform:
+```
+
+4. MySql에 접속하여 kiosk 데이터베이스 생성
+
+```
+create database kiosk;
+```
