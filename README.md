@@ -24,13 +24,37 @@
   ### Entity
   1. Menu Entity
 <img width="514" alt="Image" src="https://github.com/user-attachments/assets/c27e2bfa-3772-4c0b-b78f-31b55d196355" />
-<br>
-- 메뉴 정보를 담고 있는 엔티티로 메뉴 이름, 가격, 기본키(Id)를 포함하고 있습니다.
+
+ - 메뉴 정보를 담고 있는 엔티티로 메뉴 이름, 가격, 기본키(Id)를 포함하고 있습니다.
 
 <br><br>
 
   2. Order Entity
 <img width="799" alt="Image" src="https://github.com/user-attachments/assets/838d7fcb-ac91-4473-a8d0-ad53369df5e6" />
-<br>
-* 주문 정보를 담고 있는 엔티티로 여러 메뉴에 하나의 주문 정보가 선택될 수 있기 때문에 ManyToOne의 관계를 맺고 있습니다.(하나의 메뉴만 선택 가능함)
-* 주문 시간, 수량, 총 가격, 주문상태를 포함하고 있습니다.
+
+ - 주문 정보를 담고 있는 엔티티로 여러 메뉴에 하나의 주문 정보가 선택될 수 있기 때문에 ManyToOne의 관계를 맺고 있습니다.(하나의 메뉴만 선택 가능함)
+ - 주문 시간, 수량, 총 가격, 주문상태를 포함하고 있습니다.
+
+<br><br>
+
+  3. Kitchen Entity
+<img width="456" alt="Image" src="https://github.com/user-attachments/assets/25f1b1f5-2a61-4b64-811c-40cc3f33dd31" />
+
+- 주방 모니터 정보를 담고 있는 엔티티로 하나의 주문에는 주방 모니터의 하나의 주문만 매핑될 수 있어 OneToOne 관계를 맺습니다. (한 주문은 하나의 모니터에만 출력가능)
+- 현재 주문상태에 대한 정보를 포함하고 있습니다.
+
+<br><br>
+
+  4. OrderStatus
+<img width="376" alt="Image" src="https://github.com/user-attachments/assets/e51da4fb-bbd9-442f-a628-01ea9efe60bb" />
+
+- 주문상태 정보에 값으로 두개의 상태만 해당이 가능하기때문에(Paid(결제완료), Completed(준비완료)) 열거형(Enum)으로 선언하였습니다.
+
+<br><br>
+
+  5. KitchenStatus
+<img width="358" alt="Image" src="https://github.com/user-attachments/assets/a22404ec-5827-469b-acec-e1dc336393be" />
+
+- 주방상태 정보에 대한 값으로 두개의 상태만 해당이 가능하기때문에(Waiting(준비중), Ready(준비완료)) 열거형(Enum)으로 선언하였습니다.
+
+<br><br>
