@@ -64,6 +64,7 @@
 
   ### Service
   1. MenuService
+
 ![Image](https://github.com/user-attachments/assets/e832e71d-0c59-4bf9-9242-d931b4f9f90d)
 
 - Menu 테이블에 저장된 모든 객체를 다 조회하는 기능으로 메뉴 엔티티의 기본 키, 메뉴 이름, 메뉴 가격 총 3개의 대한 정보를 출력합니다.
@@ -71,6 +72,7 @@
 <br><br>
 
   2. OrderService
+
 ![Image](https://github.com/user-attachments/assets/dad16b85-9930-44e0-ac23-38ba86872c72)
 
 - 사용자가 결제를 요청했을 때 성공적으로 결제가 완료됬을 경우 사용자가 선택한 메뉴, 개수 정보를 가지고 총합이 얼마인지 계산후 Order 테이블에 저장합니다.
@@ -79,7 +81,27 @@
 <br><br>
 
   3. KitchenService
+     
 ![Image](https://github.com/user-attachments/assets/f6f18625-90c6-4694-8bce-043ebac08c6d)
 
 - 주방에서 조리되는 시간을 설정하여 주문완료후 2분 뒤에 준비완료된 상태로 만들기 위해 스케쥴러를 사용하였다.
 - 이때 주문테이블도 완료된 상태여야 하기 때문에 같이 갱신을 해주었다.
+
+<br><br><br>
+
+  ### DTO
+  1. FindByAllMenu
+
+![Image](https://github.com/user-attachments/assets/44ac588d-db45-4b5d-9fe3-a1c62f51dd9f)
+
+- Menu 테이블에서 따로 필요한 내용만 골라서 출력하기 위해서 DTO를 만들었다.
+
+<br><br>
+
+  2. OrderRequestDTO
+
+![Image](https://github.com/user-attachments/assets/2837ce85-b13c-49b5-b1aa-b962d82ae2c4)
+
+- 결제 요청을 할때 결제 고유번호, 주문 번호, 메뉴 정보가 필요하기 때문에 따로 DTO를 만들었다.
+
+
