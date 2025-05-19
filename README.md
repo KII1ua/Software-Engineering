@@ -135,4 +135,17 @@
 
 - 결제 페이지를 만들기위해서 localhost:8080 루트 경로에 index.html을 렌더링하기위한 컨트롤러이다.
 
-<br><br>
+  #### 결과화면
+  ![Image](https://github.com/user-attachments/assets/53d44404-cdd7-46fe-a4ce-831e7dccb119)
+
+  ![Image](https://github.com/user-attachments/assets/9a0b83aa-fc6b-4e01-b13e-dd1e25d3e6b2)
+  
+<br><br><br>
+
+  ### config
+  1. MenuInitializer
+
+![Image](https://github.com/user-attachments/assets/867f3da5-5a74-4941-af10-0ba9c5168824)
+
+- 초기에 메뉴 데이터들을 DB에 넣어주기 위한 클래스로 spring boot를 실행할때 유효성검사를 체크한 후 데이터가 없을경우 넣어준다.
+
