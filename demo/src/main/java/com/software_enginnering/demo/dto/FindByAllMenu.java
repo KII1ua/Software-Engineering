@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindByAllMenu {
+    private Long id;
     private String menuName;
     private int price;
 
     public FindByAllMenu(Menu menu) {
+        this.id = menu.getId();
         this.menuName = menu.getName();
         this.price = menu.getPrice();
     }

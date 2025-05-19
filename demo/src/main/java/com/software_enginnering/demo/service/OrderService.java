@@ -6,6 +6,7 @@ import com.software_enginnering.demo.dto.OrderRequestDTO;
 import com.software_enginnering.demo.repository.MenuRepository;
 import com.software_enginnering.demo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class OrderService {
     private final MenuRepository menuRepository;
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     @Transactional
     public Order createOrderFromPayment(Long orderId, int amount) {
@@ -39,28 +41,23 @@ public class OrderService {
     }
 
     @Transactional
-    public ResponseEntity<Order> createOrder(OrderRequestDTO dto) {
+    public void createOrder(OrderRequestDTO dto) {
+        log.info("🚀 [OrderService] 주문 생성 시작");
+        log.info("👉 전달된 DTO: {}", dto);
+
+        Menu menu = menuRepository.findById(dto.getMenuId())
+                .orElseThrow(() -> new RuntimeException("메뉴가 존재하지 않습니다."));
+
+        log.info("메뉴 조회 성공: {}", menu.getName());
+
         Map<Long, Integer> quantityMap = new HashMap<>();
-        AtomicInteger totalPrice = new AtomicInteger(0);
+        quantityMap.put(dto.getMenuId(), dto.getQuantity());
 
-        List<Menu> menuItems = dto.getOrders()
-                .stream()
-                .map(order -> {
-                    Menu menu = menuRepository.findById(order.getMenuId())
-                            .orElseThrow(() -> new IllegalArgumentException("메뉴가 존재하지 않습니다."));
-                    quantityMap.put(order.getMenuId(), order.getQuantity());
+        log.info("👉 수량 정보: {}", quantityMap);
 
-                    int totalpr = menu.getPrice() * order.getQuantity();
-                    totalPrice.addAndGet(totalpr);
-
-                    return menu;
-                })
-                .collect(Collectors.toList());
-
-        Order order = new Order(menuItems, totalPrice.get(), quantityMap);
+        Order order = new Order(List.of(menu), dto.getAmount(), quantityMap);
 
         orderRepository.save(order);
-
-        return ResponseEntity.ok(order);
+        log.info("주문 생성 완료, DB에 저장됨");
     }
 }
