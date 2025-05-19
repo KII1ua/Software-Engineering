@@ -1,6 +1,5 @@
 package com.software_enginnering.demo.controller;
 
-import com.software_enginnering.demo.domain.Order;
 import com.software_enginnering.demo.dto.OrderRequestDTO;
 import com.software_enginnering.demo.service.OrderService;
 import lombok.RequiredArgsConstructor;
