@@ -215,7 +215,7 @@ create database kiosk;
 ```
 
 ![Image](https://github.com/user-attachments/assets/cb57c408-07d5-43c2-96cf-62f73ff56aaf)
-
+ㅁ
 - 위 사진이 나오면 빌드 완료
 
 <br>
@@ -228,4 +228,9 @@ java -jar demo-0.0.1-SNAPSHOT.jar
 
 - 프로그램이 실행되면 이후 localhost:8080 으로 접속하여 테스트 결제 진행
 
-<br>
+<br><br><br>
+
+---
+
+### 샘플 코드 모듈 평가 결과
+
