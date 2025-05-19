@@ -21,3 +21,16 @@
 <br><br><br>
 
 ## Sequence Diagram을 기반으로 구현 설명
+  ### Entity
+  1. Menu Entity
+<img width="514" alt="Image" src="https://github.com/user-attachments/assets/c27e2bfa-3772-4c0b-b78f-31b55d196355" />
+<br>
+- 메뉴 정보를 담고 있는 엔티티로 메뉴 이름, 가격, 기본키(Id)를 포함하고 있습니다.
+
+<br><br>
+
+  2. Order Entity
+<img width="799" alt="Image" src="https://github.com/user-attachments/assets/838d7fcb-ac91-4473-a8d0-ad53369df5e6" />
+<br>
+* 주문 정보를 담고 있는 엔티티로 여러 메뉴에 하나의 주문 정보가 선택될 수 있기 때문에 ManyToOne의 관계를 맺고 있습니다.(하나의 메뉴만 선택 가능함)
+* 주문 시간, 수량, 총 가격, 주문상태를 포함하고 있습니다.
