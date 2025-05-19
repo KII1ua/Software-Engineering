@@ -177,6 +177,8 @@ git pull origin main
 
 ![Image](https://github.com/user-attachments/assets/82865402-45c9-440a-9297-8c8b146146f5)
 
+- 경로 demo/src/main/resources
+
 <br>
 
 ```
