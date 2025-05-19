@@ -138,6 +138,8 @@
   #### 결과화면
   ![Image](https://github.com/user-attachments/assets/53d44404-cdd7-46fe-a4ce-831e7dccb119)
 
+  ![Image](https://github.com/user-attachments/assets/fad129e9-df33-408a-ac38-ad3449d1c868)
+
   ![Image](https://github.com/user-attachments/assets/9a0b83aa-fc6b-4e01-b13e-dd1e25d3e6b2)
   
 <br><br><br>
