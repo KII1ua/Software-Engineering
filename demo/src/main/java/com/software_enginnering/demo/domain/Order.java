@@ -18,18 +18,11 @@ public class Order {            // 주문 상태 -> 어떤 메뉴를 선택했�
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    @JoinTable(
-            name = "order_menu",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id")
-    )
-    private List<Menu> menuItems = new ArrayList<>();           // 어떤 주문이 여러 메뉴가 있을 수 있기 때문에 조인 테이블 생성
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
-    @ElementCollection
-    @CollectionTable(name = "order_quantities", joinColumns = @JoinColumn(name = "order_id"))
-    @MapKeyColumn(name = "menu_id")
-    private Map<Long, Integer> quantities;          // 메뉴 Id, 개수 매핑하기 위함
+    private int quantities;
 
     private LocalDateTime orderTime;
 
@@ -38,12 +31,12 @@ public class Order {            // 주문 상태 -> 어떤 메뉴를 선택했�
     @Enumerated
     private OrderStatus status;
 
-    public Order(List<Menu> menuItems, int totalPrice, Map<Long, Integer> quantities) {
-        this.menuItems = menuItems;
-        this.orderTime = LocalDateTime.now();
+    public Order(Menu menu, int totalPrice, int quantities) {
+        this.menu = menu;
         this.totalPrice = totalPrice;
-        this.status = OrderStatus.PAID;
         this.quantities = quantities;
+        this.orderTime = LocalDateTime.now();
+        this.status = OrderStatus.PAID;
     }
 
     public void completeOrder() {
