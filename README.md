@@ -200,8 +200,32 @@ spring:
     #    database-platform:
 ```
 
+<br>
+
 4. MySql에 접속하여 kiosk 데이터베이스 생성
 
 ```
 create database kiosk;
 ```
+
+5. demo 폴더로 이동하여 클린 빌드
+
+```
+./gradlew clean build
+```
+
+![Image](https://github.com/user-attachments/assets/cb57c408-07d5-43c2-96cf-62f73ff56aaf)
+
+- 위 사진이 나오면 빌드 완료
+
+<br>
+
+6. build/libs 폴더로 이동하여 jar 파일 실행
+
+```
+java -jar demo-0.0.1-SNAPSHOT.jar
+```
+
+- 프로그램이 실행되면 이후 localhost:8080 으로 접속하여 테스트 결제 진행
+
+<br>
