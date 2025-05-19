@@ -1,8 +1,11 @@
 package com.software_enginnering.demo.service;
 
+import com.software_enginnering.demo.domain.Kitchen;
+import com.software_enginnering.demo.domain.KitchenStatus;
 import com.software_enginnering.demo.domain.Menu;
 import com.software_enginnering.demo.domain.Order;
 import com.software_enginnering.demo.dto.OrderRequestDTO;
+import com.software_enginnering.demo.repository.KitchenRepository;
 import com.software_enginnering.demo.repository.MenuRepository;
 import com.software_enginnering.demo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
+    private final KitchenRepository kitchenRepository;
 
     @Transactional
     public Order createOrderFromPayment(Long orderId, int amount) {
@@ -59,5 +63,8 @@ public class OrderService {
 
         orderRepository.save(order);
         log.info("주문 생성 완료, DB에 저장됨");
+
+        Kitchen kitchenOrder = new Kitchen(order);
+        kitchenRepository.save(kitchenOrder);
     }
 }

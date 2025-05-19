@@ -17,8 +17,12 @@ public class Kitchen {
 
     private KitchenStatus kitchenStatus;
 
-    public Kitchen(Order order, KitchenStatus kitchenStatus) {
+    public Kitchen(Order order) {
         this.order = order;
-        this.kitchenStatus = kitchenStatus;
+        this.kitchenStatus = KitchenStatus.Waiting;
+    }
+
+    public void updateStatus() {
+        this.kitchenStatus = KitchenStatus.Ready;
     }
 }
