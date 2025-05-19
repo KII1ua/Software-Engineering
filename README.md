@@ -57,4 +57,9 @@
 
 - 주방상태 정보에 대한 값으로 두개의 상태만 해당이 가능하기때문에(Waiting(준비중), Ready(준비완료)) 열거형(Enum)으로 선언하였습니다.
 
-<br><br>
+<br><br><br>
+
+
+  ### Service
+  1. MenuService
+     
