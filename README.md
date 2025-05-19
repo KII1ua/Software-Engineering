@@ -113,6 +113,10 @@
 
 ![Image](https://github.com/user-attachments/assets/7a7b5f04-e929-44e5-b6d6-7aff6eeb9cbc)
 
+  #### 결과화면
+
+![Image](https://github.com/user-attachments/assets/9e4664d9-6827-41b4-a150-7121a0d239f2)
+
 - MenuService 클래스의 findByAllMenu 메서드를 호출하는 api 엔드포인트 구조를 만들었다. /api/findByAllMenu 엔드포인트로 Get요청을 보내면 로컬에 저장되어 있는 Menu 테이블의 모든 정보가 출력된다.
 
 <br><br>
