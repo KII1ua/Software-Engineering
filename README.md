@@ -60,7 +60,7 @@
 - 주방상태 정보에 대한 값으로 두개의 상태만 해당이 가능하기때문에(Waiting(준비중), Ready(준비완료)) 열거형(Enum)으로 선언하였습니다.
 
 <br><br><br>
-
+---
 
   ### Service
   1. MenuService
@@ -88,6 +88,7 @@
 - 이때 주문테이블도 완료된 상태여야 하기 때문에 같이 갱신을 해주었다.
 
 <br><br><br>
+---
 
   ### DTO
   1. FindByAllMenu
@@ -104,4 +105,30 @@
 
 - 결제 요청을 할때 결제 고유번호, 주문 번호, 메뉴 정보가 필요하기 때문에 따로 DTO를 만들었다.
 
+<br><br><br>
+---
 
+  ### Controller
+  1. MenuController
+
+![Image](https://github.com/user-attachments/assets/7a7b5f04-e929-44e5-b6d6-7aff6eeb9cbc)
+
+- MenuService 클래스의 findByAllMenu 메서드를 호출하는 api 엔드포인트 구조를 만들었다. /api/findByAllMenu 엔드포인트로 Get요청을 보내면 로컬에 저장되어 있는 Menu 테이블의 모든 정보가 출력된다.
+
+<br><br>
+
+  2. OrderController
+
+![Image](https://github.com/user-attachments/assets/d16db2ef-8824-4986-8d1f-65da06a64b00)
+
+- OrderService 클래스의 createOrder 메서드를 호출하는 api 엔드포인트로 사용자가 결제를 하고 성공했을 경우 /api/paymentOrder 엔드포인트에 Post요청을 보내 Order테이블과 Kitchen 테이블에 사용자가 선택한 메뉴의 정보가 저장이된다.
+
+<br><br>
+
+  3. HomeController
+
+![Image](https://github.com/user-attachments/assets/267516c3-ca26-4c88-80ce-58c367379d5f)
+
+- 결제 페이지를 만들기위해서 localhost:8080 루트 경로에 index.html을 렌더링하기위한 컨트롤러이다.
+
+<br><br>
