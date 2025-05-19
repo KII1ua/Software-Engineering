@@ -11,11 +11,7 @@
 <h2>메뉴 선택 및 결제</h2>
 
 <label for="menu">메뉴 선택:</label>
-<select id="menu">
-    <option value="1">아메리카노 - 3000원</option>
-    <option value="2">카푸치노 - 3500원</option>
-    <option value="3">카페라떼 - 4000원</option>
-</select>
+<select id="menu"></select>
 <br><br>
 
 <label for="quantity">수량:</label>
@@ -25,15 +21,51 @@
 <button onclick="requestPay()">결제하기</button>
 
 <script>
-    // ✅ 아임포트 가맹점 식별코드
     const IMP = window.IMP;
     IMP.init('imp38112401'); // 가맹점 식별코드
 
-    // ✅ 결제 요청
+    function loadMenus() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/api/findByAllMenu",
+            contentType: "application/json",
+            success: function (response) {
+                console.log("불러온 메뉴 데이터:", response);
+                response.forEach(menu => {
+                    // ✅ value에 menu.id를 설정하고, data-price에 가격 정보를 담는다.
+                    $('#menu').append(`
+                        <option value="${menu.id}" data-price="${menu.price}">
+                            ${menu.menuName} - ${menu.price}원
+                        </option>
+                    `);
+                });
+            },
+            error: function () {
+                alert("메뉴 데이터를 불러오지 못했습니다.");
+            }
+        });
+    }
+    // 페이지 로딩 시 메뉴 불러오기
+    $(document).ready(function () {
+        loadMenus();
+    });
+
     function requestPay() {
         const menuId = document.getElementById('menu').value;
         const quantity = document.getElementById('quantity').value;
-        const amount = parseInt(quantity) * (menuId === "1" ? 3000 : menuId === "2" ? 3500 : 4000);
+
+        // ✅ selectedOptions로 data-price 값을 불러온다.
+        const selectedOption = document.getElementById('menu').selectedOptions[0];
+        const pricePerItem = selectedOption.getAttribute('data-price');
+
+        if (!menuId || !pricePerItem) {
+            alert("메뉴를 올바르게 선택해주세요.");
+            return;
+        }
+
+        const amount = parseInt(quantity) * parseInt(pricePerItem);
+
+        console.log(`선택된 메뉴 ID: ${menuId}, 수량: ${quantity}, 총 결제 금액: ${amount}`);
 
         IMP.request_pay({
             pg: 'kakaopay',
@@ -53,14 +85,14 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/api/order",
+                    url: "http://localhost:8080/api/paymentOrder",
                     contentType: "application/json",
                     data: JSON.stringify({
                         impUid: rsp.imp_uid,
                         merchantUid: rsp.merchant_uid,
                         amount: rsp.paid_amount,
-                        menuId: menuId,
-                        quantity: quantity
+                        menuId: parseInt(menuId), // ✅ 반드시 숫자로 변환
+                        quantity: parseInt(quantity) // ✅ 반드시 숫자로 변환
                     }),
                     success: function (response) {
                         alert("주문이 정상적으로 저장되었습니다.");

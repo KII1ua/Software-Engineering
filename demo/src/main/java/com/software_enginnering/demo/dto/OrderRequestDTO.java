@@ -10,12 +10,9 @@ import java.util.List;
 @Getter
 @Setter
 public class OrderRequestDTO {
-    private List<MenuOrderRequest> orders;
-
-    @Getter
-    @Setter
-    public static class MenuOrderRequest {
-        private Long menuId;
-        private int quantity;
-    }
+    private String impUid;
+    private String merchantUid;
+    private int amount;
+    private Long menuId;
+    private int quantity;
 }

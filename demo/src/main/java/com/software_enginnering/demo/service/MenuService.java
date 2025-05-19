@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MenuService {
-    private MenuRepository menuRepository;
+    private final MenuRepository menuRepository;
 
 
     public ResponseEntity<List<FindByAllMenu>> findByAllMenus() {
         List<Menu> menus = menuRepository.findAll();
 
         List<FindByAllMenu> menuDTO = menus.stream()
-                .map(menu -> new FindByAllMenu(menu.getName(), menu.getPrice()))
+                .map(menu -> new FindByAllMenu(menu.getId(), menu.getName(), menu.getPrice()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(menuDTO);
