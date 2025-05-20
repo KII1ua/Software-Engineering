@@ -43,7 +43,7 @@
 
 - 주방 모니터 정보를 담고 있는 엔티티로 하나의 주문에는 주방 모니터의 하나의 주문만 매핑될 수 있어 OneToOne 관계를 맺습니다. (한 주문은 하나의 모니터에만 출력가능)
 - 현재 주문상태에 대한 정보를 포함하고 있습니다.
-- Order과 마찬가지로 초기에 바로 주문자에게 제공할 수 없기 때문에 결제완료 상태로 만들기 위한 생성자를 생성하였다.
+- Order과 마찬가지로 초기에 바로 주문자에게 제공할 수 없기 때문에 결제완료 상태로 만들기 위한 생성자를 생성하였습니다.
 
 <br><br>
 
@@ -76,7 +76,7 @@
 ![Image](https://github.com/user-attachments/assets/dad16b85-9930-44e0-ac23-38ba86872c72)
 
 - 사용자가 결제를 요청했을 때 성공적으로 결제가 완료됬을 경우 사용자가 선택한 메뉴, 개수 정보를 가지고 총합이 얼마인지 계산후 Order 테이블에 저장합니다.
-- 이때 주문이 완료된 후 바로 주방 모니터에 출력하기 위해서 Kitchen 테이블에 저장한다.
+- 이때 주문이 완료된 후 바로 주방 모니터에 출력하기 위해서 Kitchen 테이블에 저장하게 했습니다.
 
 <br><br>
 
@@ -84,8 +84,8 @@
      
 ![Image](https://github.com/user-attachments/assets/f6f18625-90c6-4694-8bce-043ebac08c6d)
 
-- 주방에서 조리되는 시간을 설정하여 주문완료후 2분 뒤에 준비완료된 상태로 만들기 위해 스케쥴러를 사용하였다.
-- 이때 주문테이블도 완료된 상태여야 하기 때문에 같이 갱신을 해주었다.
+- 주방에서 조리되는 시간을 설정하여 주문완료후 2분 뒤에 준비완료된 상태로 만들기 위해 스케쥴러를 사용했습니다.
+- 이때 주문테이블도 완료된 상태여야 하기 때문에 같이 갱신을 해주었습니다.
 
 <br><br><br>
 ---
@@ -95,7 +95,7 @@
 
 ![Image](https://github.com/user-attachments/assets/44ac588d-db45-4b5d-9fe3-a1c62f51dd9f)
 
-- Menu 테이블에서 따로 필요한 내용만 골라서 출력하기 위해서 DTO를 만들었다.
+- Menu 테이블에서 따로 필요한 내용만 골라서 출력하기 위해서 DTO를 만들었습니다.
 
 <br><br>
 
@@ -103,7 +103,7 @@
 
 ![Image](https://github.com/user-attachments/assets/2837ce85-b13c-49b5-b1aa-b962d82ae2c4)
 
-- 결제 요청을 할때 결제 고유번호, 주문 번호, 메뉴 정보가 필요하기 때문에 따로 DTO를 만들었다.
+- 결제 요청을 할때 결제 고유번호, 주문 번호, 메뉴 정보가 필요하기 때문에 따로 DTO를 만들었습니다.
 
 <br><br><br>
 ---
@@ -117,7 +117,7 @@
 
 ![Image](https://github.com/user-attachments/assets/9e4664d9-6827-41b4-a150-7121a0d239f2)
 
-- MenuService 클래스의 findByAllMenu 메서드를 호출하는 api 엔드포인트 구조를 만들었다. /api/findByAllMenu 엔드포인트로 Get요청을 보내면 로컬에 저장되어 있는 Menu 테이블의 모든 정보가 출력된다.
+- MenuService 클래스의 findByAllMenu 메서드를 호출하는 api 엔드포인트 구조를 만들었습니다. /api/findByAllMenu 엔드포인트로 Get요청을 보내면 로컬에 저장되어 있는 Menu 테이블의 모든 정보가 출력됩니다.
 
 <br><br>
 
@@ -125,7 +125,7 @@
 
 ![Image](https://github.com/user-attachments/assets/d16db2ef-8824-4986-8d1f-65da06a64b00)
 
-- OrderService 클래스의 createOrder 메서드를 호출하는 api 엔드포인트로 사용자가 결제를 하고 성공했을 경우 /api/paymentOrder 엔드포인트에 Post요청을 보내 Order테이블과 Kitchen 테이블에 사용자가 선택한 메뉴의 정보가 저장이된다.
+- OrderService 클래스의 createOrder 메서드를 호출하는 api 엔드포인트로 사용자가 결제를 하고 성공했을 경우 /api/paymentOrder 엔드포인트에 Post요청을 보내 Order테이블과 Kitchen 테이블에 사용자가 선택한 메뉴의 정보가 저장이됩니다.
 
 <br><br>
 
@@ -133,7 +133,7 @@
 
 ![Image](https://github.com/user-attachments/assets/267516c3-ca26-4c88-80ce-58c367379d5f)
 
-- 결제 페이지를 만들기위해서 localhost:8080 루트 경로에 index.html을 렌더링하기위한 컨트롤러이다.
+- 결제 페이지를 만들기위해서 localhost:8080 루트 경로에 index.html을 렌더링하기위한 컨트롤러입니다.
 
   #### 결과화면
   ![Image](https://github.com/user-attachments/assets/53d44404-cdd7-46fe-a4ce-831e7dccb119)
@@ -155,7 +155,7 @@
 
 # HOW TO USE🚀
 
-1. git pull을 먼저 받는다.
+1. git Repository 주소를 복사한다.
 
 ![Image](https://github.com/user-attachments/assets/507c9a06-3809-4bff-b011-25a9f4b94a04)
 
@@ -238,5 +238,5 @@ java -jar demo-0.0.1-SNAPSHOT.jar
   2. 하지만 OrderService KitchenService 클래스는 서로가 하나씩 일부분의 역할을 수행하기 때문에 MenuService 클래스 만큼의 응집도가 높다고 평가할 수 없다고 생각합니다.
 
 - 결합도 평가
-  1. 모델의 결합도를 낮추기 위해서 하나의 파일만 사용하지 않고 여러 파일을 나눠서 각 기능들을 분리하였다. 따라서 결합도는 낮다고 평가할 수 있다고 생각합니다.
+  1. 모델의 결합도를 낮추기 위해서 하나의 파일만 사용하지 않고 여러 파일을 나눠서 각 기능들을 분리하였습니다. 따라서 결합도는 낮다고 평가할 수 있다고 생각합니다.
   2. 응집도와 마찬가지로 Order 객체와 Kitchen 객체의 의존성은 어느정도 있다고 생각합니다. 따라서 이 부분은 적절한 결합도라고 생각합니다.
